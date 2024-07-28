@@ -30,13 +30,7 @@ export class TasksComponent implements OnInit {
     this.isAddingTask = true;
   }
 
-  onCalcelAddingTask(){
-    this.isAddingTask = false;
-  }
-
-  onAddTask(newTask: NewTaskData){
-
-    this.tasksService.addTask(newTask, this.userId)
+  onCloseAddingTask(){
     this.isAddingTask = false;
   }
 
