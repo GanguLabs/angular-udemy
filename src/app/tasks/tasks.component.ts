@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { dummyTasks } from '../dummy-tasks';
 
 @Component({
   selector: 'app-tasks',
@@ -7,7 +8,14 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TasksComponent implements OnInit {
 
-  @Input() name?: string;
+  @Input() userId!: string;
+  @Input() name!: string;
+  tasks = dummyTasks
+
+  get selectedUserTasks(){
+    return this.tasks.filter((task)=> task.userId === this.userId)
+  }
+
   constructor() { }
 
   ngOnInit(): void {
