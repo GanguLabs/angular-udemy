@@ -1,6 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { DUMMY_USERS } from '../dummy-users';
-
 interface User {
   id: string;
   avatar: string;
@@ -8,17 +7,21 @@ interface User {
 }
 @Component({
   selector: 'app-user',
-  standalone: true,
-  imports: [],
   templateUrl: './user.component.html',
-  styleUrl: './user.component.css'
+  styleUrls: ['./user.component.css']
 })
-export class UserComponent {
-  @Input({required: true}) user!: User;
+export class UserComponent implements OnInit {
+
+  @Input() user!: User;
   @Output() select = new EventEmitter<string>();
 
   get imagePath() {
     return "assets/users/" + this.user.avatar
+  }
+
+  constructor() { }
+
+  ngOnInit(): void {
   }
 
   onSelectUser(){
