@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NewTask } from './new-task.model';
+import { NewTaskData } from './new-task.model';
 
 @Component({
   selector: 'app-new-task',
@@ -12,7 +12,7 @@ import { NewTask } from './new-task.model';
 export class NewTaskComponent implements OnInit {
 
   @Output() cancel = new EventEmitter<void>();
-  @Output() add = new EventEmitter<NewTask>();
+  @Output() add = new EventEmitter<NewTaskData>();
   
   enteredTitle = '';
   enteredDate = '';
@@ -32,7 +32,7 @@ export class NewTaskComponent implements OnInit {
     this.add.emit({
       title: this.enteredTitle,
       summary: this.enteredSummary,
-      date: this.enteredDate
+      dueDate: this.enteredDate
     })
   }
 
