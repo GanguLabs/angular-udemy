@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { dummyTasks } from '../dummy-tasks';
+import { NewTask as NewTaskData } from './new-task/new-task.model';
 
 @Component({
   selector: 'app-tasks',
@@ -10,6 +11,9 @@ export class TasksComponent implements OnInit {
 
   @Input() userId!: string;
   @Input() name!: string;
+
+  isAddingTask:boolean = false;
+  
   tasks = dummyTasks
 
   get selectedUserTasks(){
@@ -23,6 +27,25 @@ export class TasksComponent implements OnInit {
 
   onCompleteTask(id: string){
     this.tasks = this.tasks.filter((task)=>task.id !== id);
+  }
+
+  onStartAddTask(){
+    this.isAddingTask = true;
+  }
+
+  onCalcelAddingTask(){
+    this.isAddingTask = false;
+  }
+
+  onAddTask(newTask: NewTaskData){
+
+    this.tasks.push({
+      id: new Date().getTime().toString(),
+      userId: this.userId,
+      ...newTask,
+      dueDate: newTask.date
+    })
+    this.isAddingTask = false;
   }
 
 }
