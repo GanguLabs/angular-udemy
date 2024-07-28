@@ -21,4 +21,8 @@ export class TasksComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onCompleteTask(id: string){
+    this.tasks = this.tasks.filter((task)=>task.id !== id);
+  }
+
 }
